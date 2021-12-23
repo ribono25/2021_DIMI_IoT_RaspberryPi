@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Barricade Management</h1>
+  <div id="species"></div>
+  <button onclick="stop()">Stop Management</button>         <!--자동 반복 종료 버튼-->
+  <button onclick="open_bar()">Open Barricade</button>      <!--바리케이드 열기 버튼-->
+  <button onclick="close_bar()">Close Barricade</button>    <!--바리케이드 닫기 버튼-->
+  <script>
+    var timer = null;
+    timer = setInterval(manage, 15000);    // 15초 주기로 반복
+    
+    function open_bar() {     // Open Barricade 버튼 클릭 시
+      fetch("/open")          
+    }
+
+    function close_bar() {    // Close Barricade 버튼 클릭 시
+      fetch("/close")
+    }
+
+    function manage() {
+      fetch("/manage")
+      .then(response=>response.text())
+      .then(data=> {
+        let s = document.querySelector("#species");       // DNN 객체 검출을 통해 얻은 동물의 종을 웹에 표시함
+        s.innerHTML = "<h2>Species: " + data + "</h2>";
+      });
+    }
+
+    function stop() {
+      if (timer != null) {
+        clearInterval(timer);
+      }
+    }
+    
+  </script>
+</body>
+</html>

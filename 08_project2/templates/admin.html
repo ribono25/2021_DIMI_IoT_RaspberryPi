@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>managing barricade web site</h1>
+    <div id="animal species"></div>
+    <button onclick="renewal()">RENEWAL</button> <!-- renewal 함수를 호출하는 버튼 생성-->
+    <script>
+        function renewal(){
+            let url = "/manage"; 
+            
+            fetch(url) // 함수가 호출되면 barricade_project.py 파일의 /manage 라우팅을 실행
+            .then(response=>response.text())
+            .then(data=>{
+                let result = document.querySelector("#animal species");
+                result.innerHTML = "<h1>" + "animal species : " + data + "</h1>"; // /manage 라우팅에서 return된 동물의 종을 웹 사이트에 표시
+            }); // v2로 이전
+        }
+        
+    </script>
+</body>
+</html>
