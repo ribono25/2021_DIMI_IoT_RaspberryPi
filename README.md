@@ -9,7 +9,7 @@
 * 07_web
 * 08_project2
 
-06, 08 files need to download XML classifier files and DNN files.  
+Executing 06, 08 files need to download XML classifier files and DNN files.  
 
 ```Python
 print('Hello, GitHub')
