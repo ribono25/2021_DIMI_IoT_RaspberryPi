@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LED ON/OFF</h1>
+    <button onclick="led_op(1)">RED LED ON</button>
+    <button onclick="led_op(2)">RED LED OFF</button>
+    <button onclick="led_op(3)">BLUE LED ON</button>
+    <button onclick="led_op(4)">BLUE LED OFF</button>
+    <div id="result"></div>
+    <script>
+        function led_op(op){
+            let ur1;
+            if(op == 1){
+                ur1 = "/led/red/on";
+            } else if(op == 2){
+                ur1 = "/led/red/off";
+            } else if(op == 3){
+                ur1 = "/led/blue/on";
+            } else{
+                ur1 = "/led/blue/off";
+            }
+            
+            fetch(ur1) // ur1 속 값 전부 받기
+            .then(response=>response.text()) //.text()에 있는 값 받기
+            .then(data=>{
+                let result = document.querySelector("#result"); //id가 result인 것을 확인
+                result.innerHTML = "<h1>" + data + "</h1>";
+            });
+        }
+    </script>
+</body>
+</html>
